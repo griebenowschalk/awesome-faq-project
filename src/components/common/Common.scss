@@ -1,0 +1,58 @@
+@import "@/scss/global.scss";
+@import "@/scss/variables.scss";
+
+button {
+    height: 40px;
+    width: fit-content;
+    color: white;
+    font-size: 16px;
+    font-weight: 400;
+
+    padding: $screen-margin-quarter $screen-margin;
+    
+    @extend .border-1;
+    @extend .border-radius-1;
+
+    &:hover {
+        box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+    }
+}
+
+.checkbox {
+    @extend .flex-row;
+    @extend .align-center;
+    @extend .gap-1;
+}
+
+.textfield {
+    @extend .flex-column;
+    @extend .align-start;
+    @extend .gap-1;
+
+    .input-field {
+        box-sizing: border-box;
+        padding: 0px $screen-margin-quarter;
+
+        @extend .border-radius-1;
+        @extend .border-light;
+        @extend .content-width;
+    }
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+
+    .tooltip-text {
+        font-size: 14px;
+        visibility: hidden;
+        color: white;
+        width: fit-content;
+
+        @extend .border-1;
+
+        &:hover {
+            visibility: visible;  
+        }
+    }
+}

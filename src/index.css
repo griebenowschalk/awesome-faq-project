@@ -3,6 +3,8 @@
         sans-serif;
     line-height: 1.5;
     font-weight: 400;
+    margin: 0 auto;
+    text-align: center;
 
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;

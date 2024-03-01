@@ -1,0 +1,68 @@
+@import "./variables.scss";
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.justify-start {
+    justify-content: flex-start;
+}
+
+.justify-space-between {
+    justify-content: space-between;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.align-start {
+    align-items: flex-start;
+}
+
+.header-bg {
+    background-color: $container-background-color;
+}
+
+.success-bg {
+    background-color: $color-success;
+}
+
+.info-bg {
+    background-color: $info-background-color;
+}
+
+.alert-bg {
+    background-color: $alert-background-color;
+}
+
+.warning-bg {
+    background-color: $color-warning;
+}
+
+.border-radius-1 {
+    border-radius: 5px;
+}
+
+.gap {
+    gap: $screen-margin-quarter;
+}
+
+.border-dark {
+    border: 1px solid black;
+}
+
+.border-light {
+    border: 1px solid lightgray;
+}
+
+.content-width {
+    width: 800px;
+    max-width: 95vw;
+}
