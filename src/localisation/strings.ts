@@ -6,6 +6,7 @@ export const strings = {
     answer_label: 'Answer',
     input_answer_placeholder: 'Type your answer here',
     create_button: 'Create a question',
+    delay_label: 'Delay the question',
     created_questions: 'Created questions',
     sort_button: 'Sort questions',
     delete_button: 'Remove questions',

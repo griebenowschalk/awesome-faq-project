@@ -10,3 +10,15 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
+h2 {
+    font-weight: 400;
+    margin: 0px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+label {
+    font-weight: 500;
+}

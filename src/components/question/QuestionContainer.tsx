@@ -1,22 +1,24 @@
-import Button from '@/components/common/Button';
-import Tooltip from '@/components/common/Tooltip';
+import { Tooltip } from '@/components/common/Tooltip';
 import { strings } from '@/localisation/strings';
 import { useCallback, useMemo } from 'react';
 import {
+    QuestionsState,
     SelectorState,
     clearQuestions,
     sortQuestions,
 } from '@/redux/slices/questionsSlice';
+import { useDispatch, useSelector } from 'react-redux';
+
+import QuestionList from './QuestionList';
+import { Button } from '@/components/common/Button';
 
 import '@/scss/global.scss';
-import './QuestionContainer.scss';
-import { useDispatch, useSelector } from 'react-redux';
-import QuestionList from './QuestionList';
+import './Question.scss';
 
 function QuestionContainer() {
     const dispatch = useDispatch();
     const { questions } = useSelector(
-        (state: SelectorState) => state.questions,
+        (state: any) => state.questions as QuestionsState,
     );
     const hasQuestions = useMemo(() => questions.length > 0, [questions]);
 
@@ -34,7 +36,7 @@ function QuestionContainer() {
                 <h2>{strings.created_questions}</h2>
             </Tooltip>
 
-            <QuestionList/>
+            <QuestionList questions={questions} />
 
             {hasQuestions ? (
                 <div className="button-container">

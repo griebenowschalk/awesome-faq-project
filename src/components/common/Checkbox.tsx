@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, memo } from 'react';
 
 import './Common.scss';
 
@@ -9,7 +9,7 @@ interface CheckboxProps {
     onInputChange: (value: boolean) => void;
 }
 
-function Checkbox({
+function CheckboxComponent({
     value = false,
     name = '',
     labelText = 'undefined',
@@ -33,4 +33,4 @@ function Checkbox({
     );
 }
 
-export default Checkbox;
+export const Checkbox = memo(CheckboxComponent);

@@ -1,4 +1,4 @@
-import { PropsWithChildren, ReactNode } from 'react';
+import { PropsWithChildren, ReactNode, memo } from 'react';
 
 import './Common.scss';
 
@@ -7,7 +7,8 @@ interface TooltipProps {
     text: string;
 }
 
-function Tooltip({ children, text }: PropsWithChildren<TooltipProps>) {
+function TooltipComponent({ children, text }: PropsWithChildren<TooltipProps>) {
+    console.log('Enter Tooltip');
     return (
         <div className="tooltip">
             {children}
@@ -16,4 +17,4 @@ function Tooltip({ children, text }: PropsWithChildren<TooltipProps>) {
     );
 }
 
-export default Tooltip;
+export const Tooltip = memo(TooltipComponent);

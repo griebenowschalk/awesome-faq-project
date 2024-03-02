@@ -8,11 +8,11 @@ import './Questions.scss';
 function Questions() {
     return (
         <div className="questions">
-            <h1>{strings.faq_header}</h1>
+            <h1 className="header">{strings.faq_header}</h1>
 
             <div className="question-card">
-                <QuestionContainer />
                 <QuestionCreator />
+                <QuestionContainer />
             </div>
         </div>
     );

@@ -2,8 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 import { Question } from '@/models/question';
 import { strings } from '@/localisation/strings';
 
-const DELAY_TIME = 5000;
-
 export interface QuestionsState {
     questions: Question[];
 }
@@ -11,7 +9,6 @@ export interface QuestionsState {
 interface QuestionPayload {
     label: string;
     answer: string;
-    delay: boolean;
     id: string;
     index: number;
 }
@@ -37,23 +34,15 @@ const questionsSlice = createSlice({
     initialState,
     reducers: {
         createQuestion: (state, action) => {
-            const { label, answer, delay } = action.payload as QuestionPayload;
-            const callback = () => {
-                state.questions.push(new Question(label, answer));
-            };
-
-            if (delay) {
-                setTimeout(() => {
-                    callback();
-                }, DELAY_TIME);
-            } else callback();
+            const { label, answer } = action.payload as QuestionPayload;
+            state.questions.push(new Question(label, answer));
         },
         deleteQuestion: (state, action) => {
             const { index } = action.payload as QuestionPayload;
             state.questions.splice(index, 1);
         },
         sortQuestions: (state) => {
-            state.questions.sort((a, b) => {
+            state.questions = state.questions.sort((a, b) => {
                 return a.label.localeCompare(b.label);
             });
         },
@@ -62,12 +51,12 @@ const questionsSlice = createSlice({
         },
         showAnswer: (state, action) => {
             const { id } = action.payload as QuestionPayload;
-            const question = state.questions.find(
-                (question) => question.id === id,
-            );
-            if (question) {
-                question.isVisible = true;
-            }
+            state.questions = state.questions.map((question) => {
+                if (question.id === id) {
+                    question.isVisible = !question.isVisible;
+                }
+                return question;
+            });
         },
     },
 });

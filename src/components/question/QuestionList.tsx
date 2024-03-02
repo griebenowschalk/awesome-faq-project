@@ -1,19 +1,16 @@
 import { MouseEvent, useMemo } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {
     deleteQuestion,
-    SelectorState,
     showAnswer,
 } from '@/redux/slices/questionsSlice';
 import { strings } from '@/localisation/strings';
 
-import './Question.css';
+import './Question.scss';
+import { Question } from '@/models/question';
 
-function QuestionList() {
+function QuestionList({ questions }: { questions: Question[] }) {
     const dispatch = useDispatch();
-    const { questions } = useSelector(
-        (state: SelectorState) => state.questions,
-    );
     const isEmpty = useMemo(() => questions.length == 0, [questions]);
 
     const handleDeleteClick = (event: MouseEvent<unknown>, index: number) => {
@@ -30,7 +27,7 @@ function QuestionList() {
     const listTemplate = questions.map((q, i) => (
         <div
             key={q.id}
-            onClick={() => dispatch(showAnswer(i))}
+            onClick={() => dispatch(showAnswer(q))}
             className="question"
         >
             <div className="question-text">

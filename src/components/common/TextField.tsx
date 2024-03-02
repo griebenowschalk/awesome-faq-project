@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, memo } from 'react';
 
 import './Common.scss';
 
@@ -10,7 +10,7 @@ interface TextFieldProps {
     onInputChange: (value: string) => void;
 }
 
-function TextField({
+function TextFieldComponent({
     value = '',
     name = '',
     labelText = 'undefined',
@@ -55,4 +55,4 @@ function TextField({
     );
 }
 
-export default TextField;
+export const TextField = memo(TextFieldComponent);

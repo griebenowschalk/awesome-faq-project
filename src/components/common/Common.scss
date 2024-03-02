@@ -10,7 +10,7 @@ button {
 
     padding: $screen-margin-quarter $screen-margin;
     
-    @extend .border-1;
+    @extend .border-light;
     @extend .border-radius-1;
 
     &:hover {
@@ -21,15 +21,16 @@ button {
 .checkbox {
     @extend .flex-row;
     @extend .align-center;
-    @extend .gap-1;
+    gap: $screen-margin-quarter;
 }
 
 .textfield {
     @extend .flex-column;
     @extend .align-start;
-    @extend .gap-1;
+    gap: $screen-margin-quarter;
 
     .input-field {
+        min-height: 30px;
         box-sizing: border-box;
         padding: 0px $screen-margin-quarter;
 
@@ -42,17 +43,19 @@ button {
 .tooltip {
     position: relative;
     display: inline-block;
+    background-color: yellow;
 
     .tooltip-text {
         font-size: 14px;
-        visibility: hidden;
         color: white;
-        width: fit-content;
+        width: 100%;
+        
+        visibility: hidden;
 
-        @extend .border-1;
+        @extend .border-light;
+    }
 
-        &:hover {
-            visibility: visible;  
-        }
+    &:hover {
+        background-color: green;
     }
 }
