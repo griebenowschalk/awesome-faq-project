@@ -1,5 +1,4 @@
-import { memo } from 'react';
-import './Common.scss';
+import './styles.scss';
 
 export interface ButtonProps {
     text?: string;
@@ -8,17 +7,15 @@ export interface ButtonProps {
     type?: 'button' | 'submit' | 'reset';
 }
 
-function ButtonComponent({
+export const Button = ({
     text = '',
     className,
     onClick = () => {},
     type = 'button',
-}: ButtonProps) {
+}: ButtonProps) => {
     return (
         <button type={type} className={className} onClick={onClick}>
             {text}
         </button>
     );
-}
-
-export const Button = memo(ButtonComponent);
+};

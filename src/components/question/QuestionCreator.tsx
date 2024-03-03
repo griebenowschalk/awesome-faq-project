@@ -1,18 +1,15 @@
 import { useState } from 'react';
-import { Tooltip } from '../common/Tooltip';
+import { Tooltip, Button, Checkbox, TextField } from '@/components/common';
 import { strings } from '@/localisation/strings';
 import { createQuestion } from '@/redux/slices/questionsSlice';
 import { useDispatch } from 'react-redux';
-import { Button } from '@/components/common/Button';
-import { Checkbox } from '@/components/common/Checkbox';
-import { TextField } from '@/components/common/TextField';
 
-import './Question.scss';
+import './styles.scss';
 import '@/scss/global.scss';
 
 const DELAY_TIME = 5000;
 
-function QuestionCreator() {
+export const QuestionCreator = () => {
     const [label, setLabel] = useState('');
     const [answer, setAnswer] = useState('');
     const [delay, setDelay] = useState(false);
@@ -39,7 +36,10 @@ function QuestionCreator() {
             setAnswer('');
 
             const callback = () => {
-                dispatch(createQuestion({ labelParam, answerParam }));
+                console.log('Values: ', labelParam, answerParam);
+                dispatch(
+                    createQuestion({ label: labelParam, answer: answerParam }),
+                );
             };
 
             if (delay) {
@@ -88,6 +88,4 @@ function QuestionCreator() {
             {/* </form> */}
         </div>
     );
-}
-
-export default QuestionCreator;
+};

@@ -50,8 +50,12 @@
     border-radius: 5px;
 }
 
-.gap {
+.gap-1 {
     gap: $screen-margin-quarter;
+}
+
+.gap-2 {
+    gap: $screen-margin;
 }
 
 .border-dark {

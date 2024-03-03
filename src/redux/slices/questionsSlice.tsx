@@ -50,7 +50,7 @@ const questionsSlice = createSlice({
             state.questions = [];
         },
         showAnswer: (state, action) => {
-            const { id } = action.payload as QuestionPayload;
+            const { id } = action.payload as Question;
             state.questions = state.questions.map((question) => {
                 if (question.id === id) {
                     question.isVisible = !question.isVisible;

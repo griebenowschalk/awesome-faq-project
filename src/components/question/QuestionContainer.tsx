@@ -1,6 +1,7 @@
-import { Tooltip } from '@/components/common/Tooltip';
+import { Tooltip, Button } from '@/components/common';
 import { strings } from '@/localisation/strings';
 import { useCallback, useMemo } from 'react';
+import { QuestionList } from './QuestionList';
 import {
     QuestionsState,
     SelectorState,
@@ -9,16 +10,13 @@ import {
 } from '@/redux/slices/questionsSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
-import QuestionList from './QuestionList';
-import { Button } from '@/components/common/Button';
-
 import '@/scss/global.scss';
-import './Question.scss';
+import './styles.scss';
 
-function QuestionContainer() {
+export const QuestionContainer = () => {
     const dispatch = useDispatch();
     const { questions } = useSelector(
-        (state: any) => state.questions as QuestionsState,
+        (state: SelectorState) => state.questions as QuestionsState,
     );
     const hasQuestions = useMemo(() => questions.length > 0, [questions]);
 
@@ -56,6 +54,4 @@ function QuestionContainer() {
             )}
         </div>
     );
-}
-
-export default QuestionContainer;
+};

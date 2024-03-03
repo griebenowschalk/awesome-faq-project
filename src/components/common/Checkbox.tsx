@@ -1,6 +1,6 @@
-import { ChangeEvent, memo } from 'react';
+import { ChangeEvent } from 'react';
 
-import './Common.scss';
+import './styles.scss';
 
 interface CheckboxProps {
     value?: boolean;
@@ -9,12 +9,12 @@ interface CheckboxProps {
     onInputChange: (value: boolean) => void;
 }
 
-function CheckboxComponent({
+export const Checkbox = ({
     value = false,
     name = '',
     labelText = 'undefined',
     onInputChange,
-}: CheckboxProps) {
+}: CheckboxProps) => {
     console.log('Enter Checkbox');
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
         onInputChange(event.target.checked);
@@ -31,6 +31,4 @@ function CheckboxComponent({
             <label htmlFor={name}>{labelText}</label>
         </div>
     );
-}
-
-export const Checkbox = memo(CheckboxComponent);
+};

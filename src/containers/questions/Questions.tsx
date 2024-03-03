@@ -1,9 +1,7 @@
 import { strings } from '@/localisation/strings';
+import { QuestionContainer, QuestionCreator } from '@/components/question';
 
-import QuestionContainer from '@/components/question/QuestionContainer';
-import QuestionCreator from '@/components/question/QuestionCreator';
-
-import './Questions.scss';
+import './styles.scss';
 
 function Questions() {
     return (

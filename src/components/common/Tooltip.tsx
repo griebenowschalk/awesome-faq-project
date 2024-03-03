@@ -1,13 +1,16 @@
-import { PropsWithChildren, ReactNode, memo } from 'react';
+import { PropsWithChildren, ReactNode } from 'react';
 
-import './Common.scss';
+import './styles.scss';
 
 interface TooltipProps {
     children: ReactNode;
     text: string;
 }
 
-function TooltipComponent({ children, text }: PropsWithChildren<TooltipProps>) {
+export const Tooltip = ({
+    children,
+    text,
+}: PropsWithChildren<TooltipProps>) => {
     console.log('Enter Tooltip');
     return (
         <div className="tooltip">
@@ -15,6 +18,4 @@ function TooltipComponent({ children, text }: PropsWithChildren<TooltipProps>) {
             <div className="tooltip-text">{text}</div>
         </div>
     );
-}
-
-export const Tooltip = memo(TooltipComponent);
+};

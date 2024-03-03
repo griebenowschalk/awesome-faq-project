@@ -1,6 +1,6 @@
-import { ChangeEvent, memo } from 'react';
+import { ChangeEvent } from 'react';
 
-import './Common.scss';
+import './styles.scss';
 
 interface TextFieldProps {
     value?: string;
@@ -10,13 +10,13 @@ interface TextFieldProps {
     onInputChange: (value: string) => void;
 }
 
-function TextFieldComponent({
+export const TextField = ({
     value = '',
     name = '',
     labelText = 'undefined',
     type = 'text',
     onInputChange,
-}: TextFieldProps) {
+}: TextFieldProps) => {
     console.log('Enter Textfield');
     const handleInputChange = (
         event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -53,6 +53,4 @@ function TextFieldComponent({
             {input}
         </div>
     );
-}
-
-export const TextField = memo(TextFieldComponent);
+};

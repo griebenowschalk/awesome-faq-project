@@ -1,21 +1,18 @@
 import { MouseEvent, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
-import {
-    deleteQuestion,
-    showAnswer,
-} from '@/redux/slices/questionsSlice';
+import { deleteQuestion, showAnswer } from '@/redux/slices/questionsSlice';
 import { strings } from '@/localisation/strings';
-
-import './Question.scss';
 import { Question } from '@/models/question';
 
-function QuestionList({ questions }: { questions: Question[] }) {
+import './styles.scss';
+
+export const QuestionList = ({ questions }: { questions: Question[] }) => {
     const dispatch = useDispatch();
     const isEmpty = useMemo(() => questions.length == 0, [questions]);
 
     const handleDeleteClick = (event: MouseEvent<unknown>, index: number) => {
         event.stopPropagation();
-        dispatch(deleteQuestion(index));
+        dispatch(deleteQuestion({ index: index }));
     };
 
     const emptyTemplate = (
@@ -48,6 +45,4 @@ function QuestionList({ questions }: { questions: Question[] }) {
             {isEmpty ? emptyTemplate : listTemplate}
         </div>
     );
-}
-
-export default QuestionList;
+};
