@@ -56,8 +56,7 @@ describe('questionsSlice', () => {
     })
 
     test('should show the answer for a question', () => {
-        currentState = reducer(currentState, showAnswer(currentState.questions[0]));
-
-        expect(currentState.questions[0].isVisible).toBeTruthy();
+        expect(reducer(currentState, showAnswer(currentState.questions[0])).questions[0].isVisible).toBeTruthy();
+        expect(reducer(currentState, showAnswer(currentState.questions[0])).questions[0].isVisible).toBeFalsy();
     })
 });
