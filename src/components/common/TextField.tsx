@@ -7,7 +7,9 @@ interface TextFieldProps {
     name?: string;
     labelText?: string;
     type?: 'text' | 'textArea';
-    onInputChange: (value: string) => void;
+    onInputChange: (
+        event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    ) => void;
 }
 
 export const TextField = ({
@@ -17,20 +19,13 @@ export const TextField = ({
     type = 'text',
     onInputChange,
 }: TextFieldProps) => {
-    console.log('Enter Textfield');
-    const handleInputChange = (
-        event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    ) => {
-        onInputChange(event.target.value);
-    };
-
     let input = (
         <input
-            id={name}
+            name={name}
             className="input-field"
             type="text"
             value={value}
-            onChange={handleInputChange}
+            onChange={onInputChange}
         />
     );
 
@@ -42,7 +37,7 @@ export const TextField = ({
                 rows={3}
                 cols={50}
                 value={value}
-                onChange={handleInputChange}
+                onChange={onInputChange}
             />
         );
     }

@@ -7,7 +7,7 @@ export interface QuestionsState {
 }
 
 interface QuestionPayload {
-    label: string;
+    question: string;
     answer: string;
     id: string;
     index: number;
@@ -34,8 +34,8 @@ const questionsSlice = createSlice({
     initialState,
     reducers: {
         createQuestion: (state, action) => {
-            const { label, answer } = action.payload as QuestionPayload;
-            state.questions.push(new Question(label, answer));
+            const { question, answer } = action.payload as QuestionPayload;
+            state.questions.push(new Question(question, answer));
         },
         deleteQuestion: (state, action) => {
             const { index } = action.payload as QuestionPayload;
@@ -43,7 +43,7 @@ const questionsSlice = createSlice({
         },
         sortQuestions: (state) => {
             state.questions = state.questions.sort((a, b) => {
-                return a.label.localeCompare(b.label);
+                return a.question.localeCompare(b.question);
             });
         },
         clearQuestions: (state) => {

@@ -15,7 +15,6 @@ export const Checkbox = ({
     labelText = 'undefined',
     onInputChange,
 }: CheckboxProps) => {
-    console.log('Enter Checkbox');
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
         onInputChange(event.target.checked);
     };

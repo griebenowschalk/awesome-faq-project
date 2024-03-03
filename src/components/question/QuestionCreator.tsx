@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { ChangeEvent, FormEvent, useMemo, useState } from 'react';
 import { Tooltip, Button, Checkbox, TextField } from '@/components/common';
 import { strings } from '@/localisation/strings';
 import { createQuestion } from '@/redux/slices/questionsSlice';
@@ -8,12 +8,31 @@ import './styles.scss';
 import '@/scss/global.scss';
 
 const DELAY_TIME = 5000;
+const INITIAL_STATE = { question: '', answer: '' };
+
+interface FormData {
+    question: string;
+    answer: string;
+}
+interface FormError {
+    question?: string;
+    answer?: string;
+}
 
 export const QuestionCreator = () => {
-    const [label, setLabel] = useState('');
-    const [answer, setAnswer] = useState('');
-    const [delay, setDelay] = useState(false);
+    const [formData, setFormData] = useState<FormData>(INITIAL_STATE);
+    const [errors, setErrors] = useState<FormError>({});
+    const [delay, setDelay] = useState<boolean>(false);
     const dispatch = useDispatch();
+    const isFormValid = Object.keys(errors).length === 0;
+
+    const handleInputChange = (
+        e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    ) => {
+        const { name, value } = e.target;
+        console.log(name, value)
+        setFormData({ ...formData, [name]: value });
+    };
 
     const handleCheckboxChange = (value: boolean) => {
         setDelay(value);
@@ -24,22 +43,35 @@ export const QuestionCreator = () => {
         isQuestion: boolean = false,
     ): boolean => {
         const regex = isQuestion ? /^.{10,}\?$/ : /^.{10,}$/;
-        return regex.test(str);
+        return regex.test(str ? str : '');
     };
 
-    const handleAddQuestion = (
-        labelParam: string,
-        answerParam: string,
-    ): void => {
-        if (isValidString(labelParam, true) && isValidString(labelParam)) {
-            setLabel('');
-            setAnswer('');
+    const validateForm = () => {
+        let isValid = true;
+        const newErrors: FormError = {};
+
+        if (!isValidString(formData.question, true)) {
+            newErrors.question = strings.error_label;
+            isValid = false;
+        }
+
+        if (!isValidString(formData.answer)) {
+            newErrors.answer = strings.error_answer;
+            isValid = false;
+        }
+
+        setErrors(newErrors);
+        return isValid;
+    };
+
+    const handleAddQuestion = (e: FormEvent<HTMLFormElement>): void => {
+        e.preventDefault()
+        if (validateForm()) {
+            const form = { ...formData }
+            setFormData(INITIAL_STATE);
 
             const callback = () => {
-                console.log('Values: ', labelParam, answerParam);
-                dispatch(
-                    createQuestion({ label: labelParam, answer: answerParam }),
-                );
+                dispatch(createQuestion(form));
             };
 
             if (delay) {
@@ -49,43 +81,43 @@ export const QuestionCreator = () => {
             } else callback();
         } else return;
     };
-
+    console.log(errors)
     return (
         <div className="question-creator">
             <Tooltip text={strings.create_tooltip}>
                 <h2>{strings.create_question}</h2>
             </Tooltip>
-            {/* <form onSubmit={handleAddQuestion}> */}
-            <TextField
-                value={label}
-                name="question"
-                labelText={strings.question_label}
-                onInputChange={setLabel}
-            />
-            <TextField
-                value={answer}
-                name="answer"
-                labelText={strings.answer_label}
-                type="textArea"
-                onInputChange={setAnswer}
-            />
-
-            <div className="button-container">
-                <Button
-                    text={strings.create_button}
-                    className="success-bg"
-                    // type="submit"
-                    onClick={() => handleAddQuestion(label, answer)}
+            <form className='form-container' onSubmit={handleAddQuestion}>
+                <TextField
+                    value={formData.question}
+                    name="question"
+                    labelText={strings.question_label}
+                    onInputChange={handleInputChange}
+                />
+                <TextField
+                    value={formData.answer}
+                    name="answer"
+                    labelText={strings.answer_label}
+                    type="textArea"
+                    onInputChange={handleInputChange}
                 />
 
-                <Checkbox
-                    value={delay}
-                    name="delayCheckbox"
-                    labelText={strings.delay_label}
-                    onInputChange={handleCheckboxChange}
-                />
-            </div>
-            {/* </form> */}
+                <div className="button-container">
+                    <Button
+                        text={strings.create_button}
+                        className="success-bg"
+                        type="submit"
+                        // disabled={!isFormValid}
+                    />
+
+                    <Checkbox
+                        value={delay}
+                        name="delayCheckbox"
+                        labelText={strings.delay_label}
+                        onInputChange={handleCheckboxChange}
+                    />
+                </div>
+            </form>
         </div>
     );
 };

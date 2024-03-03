@@ -79,6 +79,12 @@
     @extend .content-width;
     @extend .gap-2;
 
+    .form-container {
+        @extend .flex-column;
+        @extend .align-start;
+        @extend .gap-2;
+    }
+
     .button-container {
         @extend .flex-row;
         @extend .align-center;

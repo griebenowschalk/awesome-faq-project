@@ -3,7 +3,6 @@ import { strings } from '@/localisation/strings';
 import { useCallback, useMemo } from 'react';
 import { QuestionList } from './QuestionList';
 import {
-    QuestionsState,
     SelectorState,
     clearQuestions,
     sortQuestions,
@@ -16,7 +15,7 @@ import './styles.scss';
 export const QuestionContainer = () => {
     const dispatch = useDispatch();
     const { questions } = useSelector(
-        (state: SelectorState) => state.questions as QuestionsState,
+        (state: SelectorState) => state.questions,
     );
     const hasQuestions = useMemo(() => questions.length > 0, [questions]);
 

@@ -28,7 +28,7 @@ export const QuestionList = ({ questions }: { questions: Question[] }) => {
             className="question"
         >
             <div className="question-text">
-                <b>{q.label}</b>
+                <b>{q.question}</b>
                 {q.isVisible ? <div>{q.answer}</div> : <></>}
             </div>
             <button

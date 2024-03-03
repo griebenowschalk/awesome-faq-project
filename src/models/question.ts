@@ -1,12 +1,12 @@
 export class Question {
     readonly id: string;
-    label: string;
+    question: string;
     answer: string;
     isVisible: boolean;
 
-    constructor(label = '', answer = '') {
-        this.id = label + answer + Math.random() * 1000;
-        this.label = label;
+    constructor(question = '', answer = '') {
+        this.id = question + answer + Math.random() * 1000;
+        this.question = question;
         this.answer = answer;
         this.isVisible = false;
     }

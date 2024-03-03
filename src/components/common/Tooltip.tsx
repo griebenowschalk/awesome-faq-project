@@ -11,7 +11,6 @@ export const Tooltip = ({
     children,
     text,
 }: PropsWithChildren<TooltipProps>) => {
-    console.log('Enter Tooltip');
     return (
         <div className="tooltip">
             {children}

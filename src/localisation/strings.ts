@@ -16,4 +16,8 @@ export const strings = {
     created_tooltip:
         'Here you can find the created questions and their answers.',
     no_questions_yet: 'No questions yet :-(',
+    error_label:
+        'Not a valid question. Needs to be at least 10 characters long and end with a question mark.',
+    error_answer:
+        'Not a valid answer. Needs to be at least 10 characters long.',
 };

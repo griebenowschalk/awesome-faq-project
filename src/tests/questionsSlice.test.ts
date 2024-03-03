@@ -17,11 +17,11 @@ describe('questionsSlice', () => {
 
     test('should create a question', () => {
         const question = {
-            label: 'What is the capital of France?',
+            question: 'What is the capital of France?',
             answer: 'Paris',
         };
         const state = questionsSlice(initialState, createQuestion(question));
         expect(state.questions.length).toBe(1);
-        expect(state.questions[0].label).toBe('What is the capital of France?');
+        expect(state.questions[0].question).toBe('What is the capital of France?');
     });
 });
