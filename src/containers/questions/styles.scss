@@ -1,0 +1,26 @@
+@import "@/scss/global.scss";
+@import "@/scss/media.scss";
+
+.questions {
+    @extend .flex-column;
+    @extend .align-center;
+
+    .header {
+        padding: $screen-margin 0px;
+        margin: 0px $screen-margin;
+        width: 100%;
+        max-width: 900px;
+        
+        @extend .border-radius-1;
+        @extend .header-bg;
+    }
+
+    .question-card {
+        margin: $screen-margin;
+        
+        @extend .gap-2;
+        @extend .content-width;
+        @extend .flex-column;
+        @extend .align-center;
+    }
+}
