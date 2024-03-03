@@ -7,6 +7,7 @@ interface TextFieldProps {
     name?: string;
     labelText?: string;
     type?: 'text' | 'textArea';
+    error?: string | undefined;
     onInputChange: (
         event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
     ) => void;
@@ -17,6 +18,7 @@ export const TextField = ({
     name = '',
     labelText = 'undefined',
     type = 'text',
+    error = undefined,
     onInputChange,
 }: TextFieldProps) => {
     let input = (
@@ -46,6 +48,7 @@ export const TextField = ({
         <div className="textfield">
             <label htmlFor={name}>{labelText}</label>
             {input}
+            {error && <div className="error">{error}</div>}
         </div>
     );
 };

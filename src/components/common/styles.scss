@@ -39,6 +39,11 @@ button {
         @extend .border-light;
         @extend .content-width;
     }
+
+    .error {
+        color: $color-warning;
+        font-size: 14px;
+    }
 }
 
 .tooltip {

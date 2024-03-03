@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useMemo, useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import { Tooltip, Button, Checkbox, TextField } from '@/components/common';
 import { strings } from '@/localisation/strings';
 import { createQuestion } from '@/redux/slices/questionsSlice';
@@ -24,13 +24,11 @@ export const QuestionCreator = () => {
     const [errors, setErrors] = useState<FormError>({});
     const [delay, setDelay] = useState<boolean>(false);
     const dispatch = useDispatch();
-    const isFormValid = Object.keys(errors).length === 0;
 
     const handleInputChange = (
         e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
     ) => {
         const { name, value } = e.target;
-        console.log(name, value)
         setFormData({ ...formData, [name]: value });
     };
 
@@ -42,7 +40,9 @@ export const QuestionCreator = () => {
         str: string,
         isQuestion: boolean = false,
     ): boolean => {
-        const regex = isQuestion ? /^.{10,}\?$/ : /^.{10,}$/;
+        const regex = isQuestion
+            ? /^\w{1}[\w\W\s]{9,}\?$/
+            : /^\w{1}[\w\W\s]{9,}$/;
         return regex.test(str ? str : '');
     };
 
@@ -65,9 +65,9 @@ export const QuestionCreator = () => {
     };
 
     const handleAddQuestion = (e: FormEvent<HTMLFormElement>): void => {
-        e.preventDefault()
+        e.preventDefault();
         if (validateForm()) {
-            const form = { ...formData }
+            const form = { ...formData };
             setFormData(INITIAL_STATE);
 
             const callback = () => {
@@ -81,17 +81,18 @@ export const QuestionCreator = () => {
             } else callback();
         } else return;
     };
-    console.log(errors)
+
     return (
         <div className="question-creator">
             <Tooltip text={strings.create_tooltip}>
                 <h2>{strings.create_question}</h2>
             </Tooltip>
-            <form className='form-container' onSubmit={handleAddQuestion}>
+            <form className="form-container" onSubmit={handleAddQuestion}>
                 <TextField
                     value={formData.question}
                     name="question"
                     labelText={strings.question_label}
+                    error={errors.question}
                     onInputChange={handleInputChange}
                 />
                 <TextField
@@ -99,6 +100,7 @@ export const QuestionCreator = () => {
                     name="answer"
                     labelText={strings.answer_label}
                     type="textArea"
+                    error={errors.answer}
                     onInputChange={handleInputChange}
                 />
 

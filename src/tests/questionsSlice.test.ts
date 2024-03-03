@@ -22,6 +22,8 @@ describe('questionsSlice', () => {
         };
         const state = questionsSlice(initialState, createQuestion(question));
         expect(state.questions.length).toBe(1);
-        expect(state.questions[0].question).toBe('What is the capital of France?');
+        expect(state.questions[0].question).toBe(
+            'What is the capital of France?',
+        );
     });
 });
