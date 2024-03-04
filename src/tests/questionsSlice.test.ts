@@ -45,7 +45,7 @@ describe('questionsSlice', () => {
         expect(currentState).toEqual(initialState);
     });
 
-    test('should sort the questions by question', () => {
+    test('should sort the questions by label', () => {
         const newQuestion = new Question(
             'What is your name?',
             'My name is John Doe',
