@@ -1,4 +1,6 @@
-# Schalk Griebenow - Tripco FAQ Project
+# Awesome FAQ Project
+
+This project is deployed at: [https://awesome-faq.netlify.app/](https://awesome-faq.netlify.app/)
 
 Before running any other commands, ensure that all dependencies have been installed:
 
